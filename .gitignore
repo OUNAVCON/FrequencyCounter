@@ -1,3 +1,9 @@
+#kds files
+demo_apps/
+driver_examples/
+rtos_examples/
+usb_examples/
+
 # Object files
 *.o
 *.ko
