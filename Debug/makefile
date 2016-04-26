@@ -53,38 +53,38 @@ endif
 
 # Add inputs and outputs from these tool invocations to the build variables 
 SECONDARY_FLASH += \
-frequencyCounter_2.hex \
+frequencyCounter.hex \
 
 SECONDARY_SIZE += \
-frequencyCounter_2.siz \
+frequencyCounter.siz \
 
 
 # All Target
-all: frequencyCounter_2.elf secondary-outputs
+all: frequencyCounter.elf secondary-outputs
 
 # Tool invocations
-frequencyCounter_2.elf: $(OBJS) $(USER_OBJS)
+frequencyCounter.elf: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: Cross ARM C++ Linker'
-	arm-none-eabi-g++ -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -Wall  -g3 -T "../MK22FN512xxx12_flash.ld" -Xlinker --gc-sections -Wl,-Map,"frequencyCounter_2.map" -specs=nosys.specs -specs=nano.specs -Xlinker -z -Xlinker muldefs -o "frequencyCounter_2.elf" $(OBJS) $(USER_OBJS) $(LIBS)
+	arm-none-eabi-g++ -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -Wall  -g3 -T "../MK22FN512xxx12_flash.ld" -Xlinker --gc-sections -Wl,-Map,"frequencyCounter.map" -specs=nosys.specs -specs=nano.specs -Xlinker -z -Xlinker muldefs -o "frequencyCounter.elf" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
-frequencyCounter_2.hex: frequencyCounter_2.elf
+frequencyCounter.hex: frequencyCounter.elf
 	@echo 'Invoking: Cross ARM GNU Create Flash Image'
-	arm-none-eabi-objcopy -O ihex "frequencyCounter_2.elf"  "frequencyCounter_2.hex"
+	arm-none-eabi-objcopy -O ihex "frequencyCounter.elf"  "frequencyCounter.hex"
 	@echo 'Finished building: $@'
 	@echo ' '
 
-frequencyCounter_2.siz: frequencyCounter_2.elf
+frequencyCounter.siz: frequencyCounter.elf
 	@echo 'Invoking: Cross ARM GNU Print Size'
-	arm-none-eabi-size --format=berkeley "frequencyCounter_2.elf"
+	arm-none-eabi-size --format=berkeley "frequencyCounter.elf"
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) $(SECONDARY_SIZE)$(C++_DEPS)$(OBJS)$(C_DEPS)$(ASM_DEPS)$(CC_DEPS)$(SECONDARY_FLASH)$(CPP_DEPS)$(CXX_DEPS)$(C_UPPER_DEPS)$(S_UPPER_DEPS) frequencyCounter_2.elf
+	-$(RM) $(SECONDARY_SIZE)$(C++_DEPS)$(OBJS)$(C_DEPS)$(ASM_DEPS)$(CC_DEPS)$(SECONDARY_FLASH)$(CPP_DEPS)$(CXX_DEPS)$(C_UPPER_DEPS)$(S_UPPER_DEPS) frequencyCounter.elf
 	-@echo ' '
 
 secondary-outputs: $(SECONDARY_FLASH) $(SECONDARY_SIZE)
