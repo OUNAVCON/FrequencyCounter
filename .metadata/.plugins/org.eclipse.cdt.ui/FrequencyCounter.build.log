@@ -1,0 +1,11 @@
+13:44:44 **** Incremental Build of configuration Debug for project FrequencyCounter ****
+make -j2 all 
+Invoking: Cross ARM GNU Print Size
+arm-none-eabi-size --format=berkeley "FrequencyCounter.elf"
+   text	   data	    bss	    dec	    hex	filename
+  35056	    136	  15320	  50512	   c550	FrequencyCounter.elf
+Finished building: FrequencyCounter.siz
+ 
+
+13:44:44 Build Finished (took 134ms)
+
